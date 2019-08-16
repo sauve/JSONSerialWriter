@@ -1,0 +1,7 @@
+= JSON Serial Writer =
+
+Arduino simple in place JSON Serializer with output to a stream 
+
+== License ==
+
+
