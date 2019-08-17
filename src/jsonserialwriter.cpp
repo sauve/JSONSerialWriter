@@ -103,6 +103,16 @@ bool JSONSerialWriter::closeArray()
 
 void JSONSerialWriter::writeString( const char* str)
 {
+  if ( str == NULL)
+   {
+     this->writeNull();
+     return;
+   }
+
+  if (!this->nameWritten && this->hadwrittenValue )
+   {
+    this->printer->print(",");
+   }
   // should encode escape caracters
   this->printer->print("\"");
   this->printer->print(str);
@@ -111,17 +121,38 @@ void JSONSerialWriter::writeString( const char* str)
   this->hadwrittenValue = true;
 }
 
-void JSONSerialWriter::writeString( const __FlashStringHelper* name)
+void JSONSerialWriter::writeString( const __FlashStringHelper* str)
 {
+  if ( str == NULL)
+   {
+     this->writeNull();
+     return;
+   }
+
+  if (!this->nameWritten && this->hadwrittenValue )
+   {
+    this->printer->print(",");
+   }
   // should encode escape caracters
   this->printer->print("\"");
-  this->printer->print(name);
+  this->printer->print(str);
   this->printer->print("\"");
   this->nameWritten = false;
   this->hadwrittenValue = true;
 }
 
 void JSONSerialWriter::writeNumber( const int value )
+{
+  if (!this->nameWritten && this->hadwrittenValue )
+   {
+    this->printer->print(",");
+   }
+  this->printer->print(value);
+  this->nameWritten = false;
+  this->hadwrittenValue = true;
+}
+
+void JSONSerialWriter::writeNumber( const int unsigned value )
 {
   if (!this->nameWritten && this->hadwrittenValue )
    {
@@ -144,6 +175,17 @@ void JSONSerialWriter::writeNumber( const byte value )
 }
 
 void JSONSerialWriter::writeNumber( const float value )
+{
+  if (!this->nameWritten && this->hadwrittenValue )
+   {
+    this->printer->print(",");
+   }
+  this->printer->print(value);
+  this->nameWritten = false;
+  this->hadwrittenValue = true;
+}
+
+void JSONSerialWriter::writeNumber( const double value )
 {
   if (!this->nameWritten && this->hadwrittenValue )
    {
@@ -196,8 +238,25 @@ void JSONSerialWriter::writeBoolean( const bool value )
   this->hadwrittenValue = true;
 }
 
+void JSONSerialWriter::writeNull()
+{
+  if (!this->nameWritten && this->hadwrittenValue )
+   {
+    this->printer->print(",");
+   }
+  this->printer->print(F("null"));
+  this->nameWritten = false;
+  this->hadwrittenValue = true;
+}
+
 // template maybe!? level of support bu compiler?
 void JSONSerialWriter::writeValue( const char* name, const int value )
+{
+  this->writeObjName(name);
+  this->writeNumber(value);
+}
+
+void JSONSerialWriter::writeValue( const char* name, const int unsigned value )
 {
   this->writeObjName(name);
   this->writeNumber(value);
@@ -228,14 +287,31 @@ void JSONSerialWriter::writeValue( const char* name, const float value )
   this->writeNumber(value);
 }
 
+void JSONSerialWriter::writeValue( const char* name, const double value )
+{
+  this->writeObjName(name);
+  this->writeNumber(value);
+}
+
 void JSONSerialWriter::writeValue( const char* name, const bool value )
 {
   this->writeObjName(name);
   this->writeBoolean(value);
 }
 
+void JSONSerialWriter::writeNullValue( const char* name)
+{
+  this->writeObjName(name);
+  this->writeNull();
+}
 
 void JSONSerialWriter::writeValue( const __FlashStringHelper* name, const int value )
+{
+  this->writeObjName(name);
+  this->writeNumber(value);
+}
+
+void JSONSerialWriter::writeValue( const __FlashStringHelper* name, const int unsigned value )
 {
   this->writeObjName(name);
   this->writeNumber(value);
@@ -266,10 +342,22 @@ void JSONSerialWriter::writeValue( const __FlashStringHelper* name, const float 
   this->writeNumber(value);
 }
 
+void JSONSerialWriter::writeValue( const __FlashStringHelper* name, const double value )
+{
+  this->writeObjName(name);
+  this->writeNumber(value);
+}
+
 void JSONSerialWriter::writeValue( const __FlashStringHelper* name, const bool value )
 {
   this->writeObjName(name);
   this->writeBoolean(value);
+}
+
+void JSONSerialWriter::writeNullValue( const __FlashStringHelper* name)
+{
+  this->writeObjName(name);
+  this->writeNull();
 }
 
 void JSONSerialWriter::writeValue( const char* name, const char* value)

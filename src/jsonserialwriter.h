@@ -38,26 +38,35 @@ public:
   void writeString( const char* str);
   void writeString( const __FlashStringHelper* str );
   void writeNumber( const int value );
+  void writeNumber( const int unsigned value );
   void writeNumber( const long value );
   void writeNumber( const long unsigned value );
   void writeNumber( const byte value );
   void writeNumber( const float value );
+  void writeNumber( const double value );
   void writeBoolean( const bool value );
+  void writeNull();
   // Date, binary
 
   void writeValue( const char* name, const int value );
+   void writeValue( const char* name, const int unsigned value );
   void writeValue( const char* name, const long value );
   void writeValue( const char* name, const long unsigned value );
   void writeValue( const char* name, const byte value );
   void writeValue( const char* name, const float value );
+  void writeValue( const char* name, const double value );
   void writeValue( const char* name, const bool value );
+  void writeNullValue( const char* name);
 
   void writeValue( const __FlashStringHelper* name, const int value );
+  void writeValue( const __FlashStringHelper* name, const int unsigned value );
   void writeValue( const __FlashStringHelper* name, const long value );
   void writeValue( const __FlashStringHelper* name, const long unsigned value );
   void writeValue( const __FlashStringHelper* name, const byte value );
   void writeValue( const __FlashStringHelper* name, const float value );
+  void writeValue( const __FlashStringHelper* name, const double value );
   void writeValue( const __FlashStringHelper* name, const bool value );
+  void writeNullValue( const __FlashStringHelper* name);
 
   void writeValue( const char* name, const char* value);
   void writeValue( const __FlashStringHelper* name, const char* value);
