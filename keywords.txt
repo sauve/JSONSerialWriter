@@ -8,11 +8,25 @@
 
 JSONSerialWriter	KEYWORD1	JSONSerialWriter
 
-
 #######################################
 # Methods and Functions (KEYWORD2)
 #######################################
-StartObject	KEYWORD2
+setPrint	KEYWORD2
+startWriter	KEYWORD2
+closeWriter	KEYWORD2
+startObject	KEYWORD2
+closeObject	KEYWORD2
+writeValue	KEYWORD2
+writeNullValue	KEYWORD2
+startArray	KEYWORD2
+closeArray	KEYWORD2
+writeNumber	KEYWORD2
+writeString	KEYWORD2
+writeBoolean	KEYWORD2
+writeNull	KEYWORD2
+writeObjName	KEYWORD2
+writeStartObject	KEYWORD2
+writeStartArray	KEYWORD2
 
 #######################################
 # Constants (LITERAL1)
