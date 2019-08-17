@@ -24,8 +24,9 @@ protected:
   Print* printer;
 public:
   JSONSerialWriter();
+  JSONSerialWriter( Print* printPtr );
 
-  void setPrint( Print* printPtr);
+  void setPrint( Print* printPtr );
   void start();
   bool close();
 
@@ -36,27 +37,27 @@ public:
   
   void writeString( const char* str);
   void writeString( const __FlashStringHelper* str );
-  void writeNumber( int value );
-  void writeNumber( long value );
-  void writeNumber( long unsigned value );
-  void writeNumber( byte value );
-  void writeNumber( float value );
-  void writeBoolean( bool value );
+  void writeNumber( const int value );
+  void writeNumber( const long value );
+  void writeNumber( const long unsigned value );
+  void writeNumber( const byte value );
+  void writeNumber( const float value );
+  void writeBoolean( const bool value );
   // Date, binary
 
-  void writeValue( const char* name, int value );
-  void writeValue( const char* name, long value );
-  void writeValue( const char* name, long unsigned value );
-  void writeValue( const char* name, byte value );
-  void writeValue( const char* name, float value );
-  void writeValue( const char* name, bool value );
+  void writeValue( const char* name, const int value );
+  void writeValue( const char* name, const long value );
+  void writeValue( const char* name, const long unsigned value );
+  void writeValue( const char* name, const byte value );
+  void writeValue( const char* name, const float value );
+  void writeValue( const char* name, const bool value );
 
-  void writeValue( const __FlashStringHelper* name, int value );
-  void writeValue( const __FlashStringHelper* name, long value );
-  void writeValue( const __FlashStringHelper* name, long unsigned value );
-  void writeValue( const __FlashStringHelper* name, byte value );
-  void writeValue( const __FlashStringHelper* name, float value );
-  void writeValue( const __FlashStringHelper* name, bool value );
+  void writeValue( const __FlashStringHelper* name, const int value );
+  void writeValue( const __FlashStringHelper* name, const long value );
+  void writeValue( const __FlashStringHelper* name, const long unsigned value );
+  void writeValue( const __FlashStringHelper* name, const byte value );
+  void writeValue( const __FlashStringHelper* name, const float value );
+  void writeValue( const __FlashStringHelper* name, const bool value );
 
   void writeValue( const char* name, const char* value);
   void writeValue( const __FlashStringHelper* name, const char* value);
@@ -70,7 +71,7 @@ public:
   
   void writeStartArray();
   bool startArray( const char* name );
-  bool StartArray( const __FlashStringHelper* name );
+  bool startArray( const __FlashStringHelper* name );
   bool closeArray();
   //bool WriteArray( const char* name, int[] data);
 };

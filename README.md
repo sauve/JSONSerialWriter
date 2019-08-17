@@ -16,7 +16,13 @@ See examples
 
 ## simple
 
-Output an simulated temperature and humidity sensor with sensor info.
+Output an simulated temperature and humidity sensor with sensor info. 
+
+Shows how to:
+* write basic type as value ( string, number, boolean, null)
+* use string store in flash for variable name and value
+* write array of number
+* create a sub obbject
 
 ## complex
 
@@ -25,11 +31,13 @@ Graph structure with long IDs stores in flash memory.
 # Todo
 
 * Add better array support
-* Add array to simple example
+* Document code of simple example
 * Create, Compile and debug complex example
-* Add string escape mecanism
-* Add example for progmem use and espace char
+* Add null write method
+* Add character escape mecanism
+* Add example for use of espace char
 * Compile on ARM architecture
 * Debug and Optimization
+* better error support and report
 * Arduino library file check and support
 * Release and push as supported library
