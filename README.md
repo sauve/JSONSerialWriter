@@ -4,7 +4,7 @@ Simple in place Arduino JSON stream serializer
 Supports:
 * Use of Print class as output 
 * Low level access to element writing methods
-* 
+* Support for string in flasf memory ( progmem )
 
 # Installation
 
@@ -24,7 +24,6 @@ Graph structure with long IDs stores in flash memory.
 
 # Todo
 
-* Add support for PROGMEM string
 * Add better array support
 * Add array to simple example
 * Create, Compile and debug complex example

@@ -32,10 +32,10 @@ public:
   void startWriter();
   bool closeWriter();
   void writeObjName( const char* name);
-  //void WriteObjName( const PROGMEM char* name );
+  void writeObjName( const __FlashStringHelper* name );
   
   void writeString( const char* str);
-  //void writeString( const PROGMEM char* str );
+  void writeString( const __FlashStringHelper* str );
   void writeNumber( int value );
   void writeNumber( long value );
   void writeNumber( long unsigned value );
@@ -50,17 +50,27 @@ public:
   void writeValue( const char* name, byte value );
   void writeValue( const char* name, float value );
   void writeValue( const char* name, bool value );
+
+  void writeValue( const __FlashStringHelper* name, int value );
+  void writeValue( const __FlashStringHelper* name, long value );
+  void writeValue( const __FlashStringHelper* name, long unsigned value );
+  void writeValue( const __FlashStringHelper* name, byte value );
+  void writeValue( const __FlashStringHelper* name, float value );
+  void writeValue( const __FlashStringHelper* name, bool value );
+
   void writeValue( const char* name, const char* value);
-  //void writeValue( const PROGMEM char* name, const PROGMEM char* str );
+  void writeValue( const __FlashStringHelper* name, const char* value);
+  void writeValue( const char* name, const __FlashStringHelper* value);
+  void writeValue( const __FlashStringHelper* name, const __FlashStringHelper* str );
   
   void writeStartObject();
   bool startObject( const char* name );
-  //bool StartObject( const PROGMEM char* name );
+  bool StartObject( const __FlashStringHelper* name );
   bool closeObject();
   
   void writeStartArray();
   bool startArray( const char* name );
-  //bool StartArray( const PROGMEM char* name );
+  bool StartArray( const __FlashStringHelper* name );
   bool closeArray();
   //bool WriteArray( const char* name, int[] data);
 };
