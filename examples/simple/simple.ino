@@ -16,14 +16,14 @@ void setup() {
 
 void loop() {
   //
-  writer.Start();
+  writer.start();
   writer.writeValue( "temperature", 10 );
-  writer.writeValue( "humidity" 22.87f );
-  writer.WriteArray( "photocells", [ 10, 20, 30, 40] );
-  writer.StartObject( "sensorstatus" );
+  writer.writeValue( "humidity", 22.87f );
+  //writer.WriteArray( "photocells", [ 10, 20, 30, 40] );
+  writer.startObject( "sensorstatus" );
   writer.writeValue( "name", "testsensor" );
   writer.writeValue( "version", "1.0.1" );
   writer.writeValue( "uptime", millis() );
-  writer.CloseObject();
-  writer.Close();
+  writer.closeObject();
+  writer.close();
 }

@@ -11,10 +11,13 @@ See examples
 
 # Todo
 
-* Add WriteVariable method
 * Compile and debug simple example
-* Compile and debug complex example
+* Add stream setup ( Serial by default )
+* Create, Compile and debug complex example
 * Add support for PROGMEM string
 * Add string escape mecanism
 * Add example for progmem use and espace char
-* Optimization
+* compile on ARM architecture
+* Debug and Optimization
+* Arduino library file check and support
+* Release and push as supported library
