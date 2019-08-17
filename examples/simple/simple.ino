@@ -16,7 +16,7 @@ void setup() {
 
 void loop() {
   //
-  writer.start();
+  writer.startWriter();
   writer.writeValue( "temperature", 10 );
   writer.writeValue( "humidity", 22.87f );
   //writer.WriteArray( "photocells", [ 10, 20, 30, 40] );
@@ -25,5 +25,6 @@ void loop() {
   writer.writeValue( "version", "1.0.1" );
   writer.writeValue( "uptime", millis() );
   writer.closeObject();
-  writer.close();
+  writer.closeWriter();
+  delay(4000);
 }

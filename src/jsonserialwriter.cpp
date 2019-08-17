@@ -9,8 +9,16 @@
 
 JSONSerialWriter::JSONSerialWriter()
 {
+  this->printer = &Serial;
   this->start();
 }
+
+
+void JSONSerialWriter::setPrint( Print* printPtr)
+{
+  this->printer = printPtr;
+}
+
 
 void JSONSerialWriter::start()
 {
@@ -25,6 +33,18 @@ bool JSONSerialWriter::close()
   //check for array and object depth
   Serial.println();
   return true;
+}
+
+void JSONSerialWriter::startWriter()
+{
+  this->start();
+  this->writeStartObject();
+}
+
+bool JSONSerialWriter::closeWriter()
+{
+  this->closeObject();
+  return this->close();
 }
 
 void JSONSerialWriter::writeObjName( const char* name)

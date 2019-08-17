@@ -21,11 +21,16 @@ protected:
   boolean nameWritten;
   int arraydepth;
   boolean hadwrittenValue;
+  Print* printer;
 public:
   JSONSerialWriter();
 
+  void setPrint( Print* printPtr);
   void start();
   bool close();
+
+  void startWriter();
+  bool closeWriter();
   void writeObjName( const char* name);
   //void WriteObjName( const PROGMEM char* name );
   
