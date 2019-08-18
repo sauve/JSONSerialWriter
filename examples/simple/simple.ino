@@ -1,24 +1,33 @@
 /*
  * 
- * Simple example fo json serialization
+ * Simple example of json serialization
  * 
  * By Germain Sauvé
  * 
  */
 
+#include <Arduino.j>
+// include JSONSerialWriter header file 
  #include <jsonserialwriter.h>
 
-JSONSerialWriter writer;
 
 void setup() {
+  // Init default Serial communication at 57600 baud
   Serial.begin(57600);
 }
 
 void loop() {
-  //
+  // Declare JSONSerialWriter in this scope and name it wtiter 
+  JSONSerialWriter writer;
+
+  // Reinitialize the state and Write the start of a object to Serial  
   writer.startWriter();
+
+  // Write the value temperature with a integer value of 10
   writer.writeValue( "temperature", 10 );
-  writer.writeValue( "humidity", 22.87f );
+
+  // Write 
+  writer.writeValue( F("humidity"), 22.87f );
   writer.writeValue( F("winddirection"), F("North"));
   writer.writeValue( F("windgust"), 2.6f);
   writer.writeValue( "rain", F("none"));
