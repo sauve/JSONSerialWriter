@@ -22,6 +22,20 @@ protected:
   int arraydepth;
   boolean hadwrittenValue;
   Print* printer;
+
+  void writeComaForValue()
+  {
+    if (!this->nameWritten && this->hadwrittenValue )
+    {
+      this->printer->print(',');
+    }
+  }
+
+  void setEndStateOfValue()
+  {
+    this->nameWritten = false;
+    this->hadwrittenValue = true;
+  }
 public:
   JSONSerialWriter();
   JSONSerialWriter( Print* printPtr );

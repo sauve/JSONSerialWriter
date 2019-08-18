@@ -32,6 +32,7 @@ Graph structure with long IDs stores in flash memory.
 
 * Document code of simple example
 * Create, Compile and debug complex example
+* Create new example as unit test
 * Should Write of a char be cast to a string or a number ( signed byte )?
 * Add character escape mecanism
 * Add example for use of espace char
