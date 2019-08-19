@@ -9,8 +9,6 @@
 
 #include <jsonserialwriter.h>
 
-JSONSerialWriter writer;
-
 void setup() {
   Serial.begin(57600);
 }
@@ -23,6 +21,7 @@ void serializeNode( int val1, int strIdx, bool bval, float fval )
 
 void loop() {
   // 
+  JSONSerialWriter writer;
 
-
+  delay(4000);
 }

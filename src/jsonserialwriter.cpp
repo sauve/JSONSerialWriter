@@ -360,7 +360,7 @@ bool JSONSerialWriter::startObject( const char* name )
   return true;
 }
 
-bool JSONSerialWriter::StartObject( const __FlashStringHelper* name )
+bool JSONSerialWriter::startObject( const __FlashStringHelper* name )
 {
   this->writeObjName(name);
   this->writeStartObject();

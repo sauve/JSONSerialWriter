@@ -89,7 +89,7 @@ public:
   
   void writeStartObject();
   bool startObject( const char* name );
-  bool StartObject( const __FlashStringHelper* name );
+  bool startObject( const __FlashStringHelper* name );
   bool closeObject();
   
   void writeStartArray();

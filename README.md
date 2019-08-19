@@ -28,18 +28,36 @@ Shows how to:
 
 Graph structure with long IDs stores in flash memory.
 
+## coverage
+
+Test all methods of the Writer class. Used as complete example and to test the library.
+
+# Limitations
+
+What JSONSerialWriter won't be able to do:
+
+* Calculate the size of the output before serialization
+* Serialize to multiple stream 
+* Pretty print the output ( no space, no identation, no new line until the end of the serialization )
+
+
 # Todo
 
-* Document code of simple example
 * Create, Compile and debug complex example
 * Create new example as unit test
 * Should Write of a char be cast to a string or a number ( signed byte )?
 * Add character escape mecanism
 * Add example for use of espace char
+* Add support for String class
+* Add multiple write for the same string value
 * Compile on ARM architecture
 * Add better array support
 * Debug and Optimization
     * methode for value check to write , and set writing state ( could be inline )
 * better error support and report
+* Select licence
 * Arduino library file check and support
+    * properties
+    * .adoc
+    * keywords
 * Release and push as supported library
