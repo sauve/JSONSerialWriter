@@ -104,7 +104,40 @@ void JSONSerialWriter::writeString( const char* str)
   this->writeComaForValue();
   // should encode escape caracters
   this->printer->print('\"');
-  this->printer->print(str);
+  // naive implementation of escape characters mapping
+  // should optimize by advanving pointer/size until translation and wirting thise in bulk
+  char* curChar = (char*)str;
+  while(  *curChar )
+  {
+    switch( *curChar )
+    {
+      case '\b':
+        this->printer->print("\\b");
+        break;
+      case '\f':
+        this->printer->print("\\f");
+        break;
+      case '\t':
+        this->printer->print("\\t");
+        break;
+      case '\n':
+        this->printer->print("\\n");
+        break;
+      case '\r':
+        this->printer->print("\\r");
+        break;
+      case '\\':
+        this->printer->print("\\\\");
+        break;
+      case '\"':
+        this->printer->print("\\\"");
+        break;
+      default:
+        this->printer->print( *curChar);
+        break;
+    }
+    ++curChar;
+  }
   this->printer->print('\"');
   this->setEndStateOfValue();
 }
@@ -120,6 +153,8 @@ void JSONSerialWriter::writeString( const __FlashStringHelper* str)
   this->writeComaForValue();
   // should encode escape caracters
   this->printer->print('\"');
+  // need to read via progmem byte per byte fro character translation
+
   this->printer->print(str);
   this->printer->print('\"');
   this->setEndStateOfValue();
@@ -149,14 +184,14 @@ void JSONSerialWriter::writeNumber( const byte value )
 void JSONSerialWriter::writeNumber( const float value )
 {
  this->writeComaForValue();
-  this->printer->print(value);
+  this->printer->print(value, 4);
   this->setEndStateOfValue();
 }
 
 void JSONSerialWriter::writeNumber( const double value )
 {
   this->writeComaForValue();
-  this->printer->print(value);
+  this->printer->print(value, 8);
   this->setEndStateOfValue();
 }
 

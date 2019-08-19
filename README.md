@@ -40,24 +40,27 @@ What JSONSerialWriter won't be able to do:
 * Serialize to multiple stream 
 * Pretty print the output ( no space, no identation, no new line until the end of the serialization )
 
-
 # Todo
 
 * Create, Compile and debug complex example
 * Create new example as unit test
 * Should Write of a char be cast to a string or a number ( signed byte )?
-* Add character escape mecanism
 * Add example for use of espace char
 * Add support for String class
-* Add multiple write for the same string value
-* Compile on ARM architecture
-* Add better array support
-* Debug and Optimization
-    * methode for value check to write , and set writing state ( could be inline )
-* better error support and report
-* Select licence
 * Arduino library file check and support
     * properties
     * .adoc
     * keywords
+* Debug and Optimization
+    * methode for value check to write , and set writing state ( could be inline )
+* better error support and report
+* Select licence
 * Release and push as supported library
+* Other release to add feature:
+    * Add multiple write for the same string value
+    * Compile on ARM architecture
+    * Add better array support
+    * Add raw write support
+    * Release new version of librairy
+
+
