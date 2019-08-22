@@ -6,6 +6,10 @@
  * By Germain Sauvé
  * 
  */
+ #include <avr/pgmspace.h>
+#include <WString.h>
+
+static const PROGMEM char pgchar[] = {"this is a test"};
 
 #include <Arduino.h>
 // include JSONSerialWriter header file 
@@ -33,12 +37,29 @@ void loop() {
   writer.writeValue(F("float"), 1.012345f );
   writer.writeValue(F("double"), 1.0123456789d );
   // test string in memory and flash
-  // test escape characters in memory
-  writer.writeObjName("escaptedStr");
-  writer.writeString("\t\n\r\"\\");
-  // test escape characters in flash  
-  // add Array
+  writer.writeObjName(F("strRAM"));
+  writer.writeString("inRAM");
 
+  String str1 = "StringClass";
+  writer.writeObjName(str1);
+  writer.writeString(str1);
+  
+  writer.writeObjName(F("strFlash"));
+  writer.writeString(F("inFlash"));
+
+  writer.writeObjName(F("pgChar"));
+  writer.writeString(FPSTR(pgchar));
+  
+  
+  // espaced character in memory
+  writer.writeObjName(F("escaptedStr"));
+  writer.writeString("\t\n\r\"\\");
+  // test escape characters in flash
+  writer.writeObjName(F("escaptedStr"));
+  writer.writeString(F("\t\n\r\"\\"));
+    
+  // add Array
+  
   // add object
 
   // close the output

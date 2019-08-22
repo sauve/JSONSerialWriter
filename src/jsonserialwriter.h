@@ -13,6 +13,10 @@
 // if supported by architecture ATMEGA
 #include <avr/pgmspace.h>
 
+#ifndef FPSTR
+#define FPSTR(pstr_pointer) (reinterpret_cast<const __FlashStringHelper *>(pstr_pointer))
+#endif
+
 
 class JSONSerialWriter
 {
@@ -47,10 +51,12 @@ public:
   void startWriter();
   bool closeWriter();
   void writeObjName( const char* name);
+  void writeObjName( const String &str);
   void writeObjName( const __FlashStringHelper* name );
   
   void writeString( const char* str);
   void writeString( const __FlashStringHelper* str );
+  void writeString( const String &str);
   void writeNumber( const int value );
   void writeNumber( const int unsigned value );
   void writeNumber( const long value );
@@ -70,7 +76,9 @@ public:
   void writeValue( const char* name, const float value );
   void writeValue( const char* name, const double value );
   void writeValue( const char* name, const bool value );
+  void writeValue( const char* name, const String &str);
   void writeNullValue( const char* name);
+  
 
   void writeValue( const __FlashStringHelper* name, const int value );
   void writeValue( const __FlashStringHelper* name, const int unsigned value );
@@ -80,6 +88,7 @@ public:
   void writeValue( const __FlashStringHelper* name, const float value );
   void writeValue( const __FlashStringHelper* name, const double value );
   void writeValue( const __FlashStringHelper* name, const bool value );
+  void writeValue( const __FlashStringHelper* name, const String &str);
   void writeNullValue( const __FlashStringHelper* name);
 
   void writeValue( const char* name, const char* value);
@@ -89,14 +98,15 @@ public:
   
   void writeStartObject();
   bool startObject( const char* name );
+  bool startObject( const String &name );
   bool startObject( const __FlashStringHelper* name );
   bool closeObject();
   
   void writeStartArray();
   bool startArray( const char* name );
+  bool startArray( const String &name );
   bool startArray( const __FlashStringHelper* name );
   bool closeArray();
-  //bool WriteArray( const char* name, int[] data);
 };
 
 

@@ -42,11 +42,19 @@ What JSONSerialWriter won't be able to do:
 
 # Todo
 
-* Create, Compile and debug complex example
+* Implement naive esapced char with pg_read from flash
+    * Test UNO
+    * Test MEGA
+    * Test Nano
 * Create new example as unit test
+    * Add example for use of escaped char
+    * Add example with writeValue
+    * Add array
+    * Add Object
+    * Add array of object
+* Create, Compile and debug complex example
+    * Add example for use of escaped char
 * Should Write of a char be cast to a string or a number ( signed byte )?
-* Add example for use of espace char
-* Add support for String class
 * Arduino library file check and support
     * properties
     * .adoc
@@ -58,7 +66,7 @@ What JSONSerialWriter won't be able to do:
 * Release and push as supported library
 * Other release to add feature:
     * Add multiple write for the same string value
-    * Compile on ARM architecture
+    * Compile on ARM architecture ( sam and samd )
     * Add better array support
     * Add raw write support
     * Release new version of librairy

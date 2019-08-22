@@ -66,6 +66,11 @@ void JSONSerialWriter::writeObjName( const char* name)
   this->nameWritten = true;
 }
 
+void JSONSerialWriter::writeObjName( const String &name)
+{
+  this->writeObjName( name.c_str() );
+}
+
 void JSONSerialWriter::writeObjName( const __FlashStringHelper* name )
 {
   if (!this->newObject || this->hadwrittenValue)
@@ -142,6 +147,7 @@ void JSONSerialWriter::writeString( const char* str)
   this->setEndStateOfValue();
 }
 
+// This is the implementation for the ATMEGA328P
 void JSONSerialWriter::writeString( const __FlashStringHelper* str)
 {
   if ( str == NULL)
@@ -152,12 +158,51 @@ void JSONSerialWriter::writeString( const __FlashStringHelper* str)
 
   this->writeComaForValue();
   // should encode escape caracters
+
+
   this->printer->print('\"');
   // need to read via progmem byte per byte fro character translation
 
-  this->printer->print(str);
+  char* flashptr = (char*)str;
+  char curChar = pgm_read_byte_near(++flashptr);
+  while( curChar )
+  {
+    switch( curChar )
+    {
+      case '\b':
+        this->printer->print("\\b");
+        break;
+      case '\f':
+        this->printer->print("\\f");
+        break;
+      case '\t':
+        this->printer->print("\\t");
+        break;
+      case '\n':
+        this->printer->print("\\n");
+        break;
+      case '\r':
+        this->printer->print("\\r");
+        break;
+      case '\\':
+        this->printer->print("\\\\");
+        break;
+      case '\"':
+        this->printer->print("\\\"");
+        break;
+      default:
+        this->printer->print( curChar);
+        break;
+    }
+    curChar = pgm_read_byte_near(++flashptr);
+  }
   this->printer->print('\"');
   this->setEndStateOfValue();
+}
+
+void JSONSerialWriter::writeString( const String &str)
+{
+  this->writeString( str.c_str() );
 }
 
 void JSONSerialWriter::writeNumber( const int value )
@@ -282,6 +327,12 @@ void JSONSerialWriter::writeValue( const char* name, const bool value )
   this->writeBoolean(value);
 }
 
+void JSONSerialWriter::writeValue( const char* name, const String &str)
+{
+  this->writeObjName(name);
+  this->writeString(str);
+}
+
 void JSONSerialWriter::writeNullValue( const char* name)
 {
   this->writeObjName(name);
@@ -335,6 +386,12 @@ void JSONSerialWriter::writeValue( const __FlashStringHelper* name, const bool v
 {
   this->writeObjName(name);
   this->writeBoolean(value);
+}
+
+void JSONSerialWriter::writeValue( const __FlashStringHelper* name, const String &str)
+{
+  this->writeObjName(name);
+  this->writeString(str);
 }
 
 void JSONSerialWriter::writeNullValue( const __FlashStringHelper* name)
@@ -395,6 +452,13 @@ bool JSONSerialWriter::startObject( const char* name )
   return true;
 }
 
+bool JSONSerialWriter::startObject( const String &name )
+{
+  this->writeObjName(name);
+  this->writeStartObject();
+  return true;
+}
+
 bool JSONSerialWriter::startObject( const __FlashStringHelper* name )
 {
   this->writeObjName(name);
@@ -410,16 +474,16 @@ bool JSONSerialWriter::startArray( const char* name )
   return true;
 }
 
-bool JSONSerialWriter::startArray( const __FlashStringHelper* name )
+bool JSONSerialWriter::startArray( const String &name )
 {
   this->writeObjName(name);
   this->writeStartArray();
   return true;
 }
 
-/* bool JSONSerialWriter::WriteArray( const char* name, int[] data)
+bool JSONSerialWriter::startArray( const __FlashStringHelper* name )
 {
-  this->StartArray(name);
-  // call writeNumber for each element in data
-  return false;
-} */
+  this->writeObjName(name);
+  this->writeStartArray();
+  return true;
+}
