@@ -42,7 +42,7 @@ What JSONSerialWriter won't be able to do:
 
 # Todo
 
-* Implement naive esapced char with pg_read from flash
+* Implement naive escaped char with pg_read from flash
     * Test UNO
     * Test MEGA
     * Test Nano
@@ -59,16 +59,16 @@ What JSONSerialWriter won't be able to do:
     * properties
     * .adoc
     * keywords
+    * add a contribute or other file
 * Debug and Optimization
-    * methode for value check to write , and set writing state ( could be inline )
-* better error support and report
-* Select licence
+    * escape character writer in bulck if no mapping needed ( not a per char print! )
+    * better error support and report
+* Select licence ( MIT? )
 * Release and push as supported library
-* Other release to add feature:
+* Other features for subsequent release:
     * Add multiple write for the same string value
-    * Compile on ARM architecture ( sam and samd )
+    * Compile on ARM architecture ( sam and samd, need other board to test )
     * Add better array support
     * Add raw write support
-    * Release new version of librairy
 
 

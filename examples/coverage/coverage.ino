@@ -59,9 +59,23 @@ void loop() {
   writer.writeString(F("\t\n\r\"\\"));
     
   // add Array
+  writer.startArray(F("array1"));
+  writer.writeNumber( -5 );
+  writer.writeNumber( 20.0f );
+  writer.writeNumber( (long unsigned)4000000000 );
+  writer.closeArray();
   
   // add object
+  writer.startObject(F("object1"));
+  writer.writeValue(F("objstring"), F("Str Value"));
+  writer.writeValue(F("objint"), -12);
+  writer.startArray(F("objarray"));
+  writer.writeString("str1");
+  writer.writeString(F("str2"));
+  writer.closeArray();
+  writer.closeObject();
 
+  writer.writeValue(F("afterobj"), 333);
   // close the output
   writer.closeWriter();
   

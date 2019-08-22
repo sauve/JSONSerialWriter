@@ -164,7 +164,7 @@ void JSONSerialWriter::writeString( const __FlashStringHelper* str)
   // need to read via progmem byte per byte fro character translation
 
   char* flashptr = (char*)str;
-  char curChar = pgm_read_byte_near(++flashptr);
+  char curChar = pgm_read_byte_near(flashptr++);
   while( curChar )
   {
     switch( curChar )
@@ -194,7 +194,7 @@ void JSONSerialWriter::writeString( const __FlashStringHelper* str)
         this->printer->print( curChar);
         break;
     }
-    curChar = pgm_read_byte_near(++flashptr);
+    curChar = pgm_read_byte_near(flashptr++);
   }
   this->printer->print('\"');
   this->setEndStateOfValue();
