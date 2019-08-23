@@ -46,12 +46,6 @@ What JSONSerialWriter won't be able to do:
     * Test UNO
     * Test MEGA
     * Test Nano
-* Create new example as unit test
-    * Add example for use of escaped char
-    * Add example with writeValue
-    * Add array
-    * Add Object
-    * Add array of object
 * Create, Compile and debug complex example
     * Add example for use of escaped char
 * Should Write of a char be cast to a string or a number ( signed byte )?

@@ -39,6 +39,7 @@ void loop() {
   // test string in memory and flash
   writer.writeObjName(F("strRAM"));
   writer.writeString("inRAM");
+  writer.writeNullValue(F("nullv"));
 
   String str1 = "StringClass";
   writer.writeObjName(str1);
@@ -50,6 +51,7 @@ void loop() {
   writer.writeObjName(F("pgChar"));
   writer.writeString(FPSTR(pgchar));
   
+  writer.writeValue(F("nullStr"), (const char *)0 );
   
   // espaced character in memory
   writer.writeObjName(F("escaptedStr"));

@@ -111,38 +111,53 @@ void JSONSerialWriter::writeString( const char* str)
   this->printer->print('\"');
   // naive implementation of escape characters mapping
   // should optimize by advanving pointer/size until translation and wirting thise in bulk
-  char* curChar = (char*)str;
-  while(  *curChar )
+  int startidx = 0;
+  int curidx = 0;
+  char curChar = *str;
+  while(  curChar )
   {
-    switch( *curChar )
+    switch( curChar )
     {
       case '\b':
+        // block copy start to current
+        this->printer->write( str + startidx, curidx - startidx );
+        startidx = curidx + 1;
         this->printer->print("\\b");
         break;
       case '\f':
+        this->printer->write( str + startidx, curidx - startidx );
+        startidx = curidx + 1;
         this->printer->print("\\f");
         break;
       case '\t':
+        this->printer->write( str + startidx, curidx - startidx );
+        startidx = curidx + 1;
         this->printer->print("\\t");
         break;
       case '\n':
+        this->printer->write( str + startidx, curidx - startidx );
+        startidx = curidx + 1;
         this->printer->print("\\n");
         break;
       case '\r':
+        this->printer->write( str + startidx, curidx - startidx );
+        startidx = curidx + 1;
         this->printer->print("\\r");
         break;
       case '\\':
+        this->printer->write( str + startidx, curidx - startidx );
+        startidx = curidx + 1;
         this->printer->print("\\\\");
         break;
       case '\"':
+        this->printer->write( str + startidx, curidx - startidx );
+        startidx = curidx + 1;
         this->printer->print("\\\"");
         break;
-      default:
-        this->printer->print( *curChar);
-        break;
     }
-    ++curChar;
+    curChar = *(str + curidx++);
   }
+  this->printer->write( str + startidx, curidx - startidx );
   this->printer->print('\"');
   this->setEndStateOfValue();
 }
