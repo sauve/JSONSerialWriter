@@ -5,6 +5,7 @@ Supports:
 * Use of Print class as output 
 * Low level access to element writing methods
 * Support for string in flash memory ( progmem ) for both name and value
+* Start serilalization as JSONP and close it correctly
 
 # Installation
 

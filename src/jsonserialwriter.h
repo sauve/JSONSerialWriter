@@ -23,6 +23,7 @@ class JSONSerialWriter
 protected:
   boolean newObject;
   boolean nameWritten;
+  boolean isJSONP;
   int arraydepth;
   boolean hadwrittenValue;
   Print* printer;
@@ -40,6 +41,7 @@ protected:
     this->nameWritten = false;
     this->hadwrittenValue = true;
   }
+
 public:
   JSONSerialWriter();
   JSONSerialWriter( Print* printPtr );
@@ -49,6 +51,10 @@ public:
   bool close();
 
   void startWriter();
+  void startWriterJSONP( const char* callbackstr);
+  void startWriterJSONP( const String &callbackstr);
+  void startWriterJSONP( const __FlashStringHelper* callbackstr);
+
   bool closeWriter();
   void writeObjName( const char* name);
   void writeObjName( const String &str);
@@ -69,7 +75,7 @@ public:
   // Date, binary
 
   void writeValue( const char* name, const int value );
-   void writeValue( const char* name, const int unsigned value );
+  void writeValue( const char* name, const int unsigned value );
   void writeValue( const char* name, const long value );
   void writeValue( const char* name, const long unsigned value );
   void writeValue( const char* name, const byte value );

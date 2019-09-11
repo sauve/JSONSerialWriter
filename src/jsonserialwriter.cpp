@@ -32,6 +32,7 @@ void JSONSerialWriter::start()
   this->newObject = true;
   this->nameWritten = false;
   this->hadwrittenValue = false;
+  this->isJSONP = false;
 }
 
 bool JSONSerialWriter::close()
@@ -47,9 +48,40 @@ void JSONSerialWriter::startWriter()
   this->writeStartObject();
 }
 
+void JSONSerialWriter::startWriterJSONP( const char* callbackstr)
+{
+  this->start();
+  this->isJSONP = true;
+  this->printer->print(callbackstr);
+  this->printer->print('(');
+  this->writeStartObject();
+}
+
+void JSONSerialWriter::startWriterJSONP( const String &callbackstr)
+{
+  this->start();
+  this->isJSONP = true;
+  this->printer->print(callbackstr);
+  this->printer->print('(');
+  this->writeStartObject();
+}
+
+void JSONSerialWriter::startWriterJSONP( const __FlashStringHelper* callbackstr)
+{
+  this->start();
+  this->isJSONP = true;
+  this->printer->print(callbackstr);
+  this->printer->print('(');
+  this->writeStartObject();
+}
+
 bool JSONSerialWriter::closeWriter()
 {
   this->closeObject();
+  if ( this->isJSONP )
+  {
+    this->printer->print(')');
+  }
   return this->close();
 }
 
